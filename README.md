@@ -6,7 +6,8 @@ Technology Used In This Tutorial
 
 -   [SvelteKit](https://kit.svelte.dev) - This is the UI ([Svelte](https://svelte.dev)) and App Framework for the portfolio.
 -   [TailwindCSS](https://tailwindcss.com) - This is the CSS Framework used for style composition.
--   []
+-   [Netlify](https://netlify.com) - This is the JamStack provider that will host our page.
+-   [Cloudflare](https://cloudflare.com) - We'll use cloudflare for DNS.
 
 # What Will You Build?
 
@@ -300,7 +301,13 @@ One other subtle but important new item is the data binding `{@html ...}` within
 
 > Note: Svelte doesn't do any sanitizing of the html that's being bound, so you need to be careful with html that comes from outside sources as you could risk exposing your users to XSS attacks. [More Info Here](https://svelte.dev/docs#html).
 
-Our component is ready to be consumed, but we've got a few more components to create before we can finalize render this to a page.
+### Show the world your beautiful face
+
+Our hero is setup to consume an image located at `./static/images/avatar.png`. Typically, you would just drop a square image in this place, and we'd round it Tailwind to create a nice circle image. In our case, we actually need the image to be round for our dynamically generated post images. I used [This Tool](https://crop-circle.imageonline.co/) to create my circle png avatar. Disclaimer, that site is bloated with ads, buyer beware.
+
+However you decide to make the image, you'll just need a circular png image located at `./static/images/avatar.png`.
+
+Our component is ready to be consumed, but we've got a few more components to create before we can render this to a page.
 
 ## We Need More Content
 
@@ -309,5 +316,94 @@ We're now going to create the couple of components that are required for us to d
 Create the following files, and copy their snippets in.
 
 -   `./src/components/BlogSnippet.svelte` -> SNIPPETS/08.txt
+    -   This is our individual blog snippet, 1 will be rendered per article.
 -   `./src/components/BlogSnippets.svelte` -> SNIPPETS/09.txt
+    -   This is our component that houses 1:many blog snippets.
 -   `./src/components/Pager.svelte` -> SNIPPETS/10.txt
+    -   This is the component that handles paging when there are many pages of snippets to be displayed.
+
+The BlogSnippets and BlogSnippet/Pager components are great examples of using nested components in Svelte. There are many reasons to use nested components but the top two that come to mind:
+
+-   It's good to keep components scoped to the data / structure they're concerned with. Having too much logic or structure inside a single component can become unwieldy fast.
+-   When you're using custom css (`<style>` tags) inside your component, svelte will keep those styles encapsulated to that component. This helps prevent styles from inadvertantly leaking out to other components on your page.
+
+    _Example of CSS Encapsulation_
+
+    ```html
+    <!-- CatsList.svelte -->
+    <script>
+        import Cat from './Cat.svelte';
+        export let cats;
+    </script>
+
+    <style>
+        p {
+            color: red;
+        }
+    </style>
+
+    <p>This is a list of cats</p>
+
+    {#each cats as cat}
+    <!-- Notice that if the prop name, and your local variable name are the same, you can pass your local variable inside single curly braces -->
+    <Cat {name}>
+        {/each} --------------
+        <!-- Cat.svelte -->
+        <script>
+            export let name;
+        </script>
+
+        <p>{name}</p></Cat
+    >
+    ```
+
+    Even though the nested Cat component, and the outer CatsList component both utilize the p tag, only the CatsList component's p tag will be styled in a red color.
+
+## All this UI and No Data
+
+So far we've pulled together almost all of the components that we'll need to drive our new portfolio page, but we need to have some data as well. This is one of the superpowers ⚡ of SvelteKit. I mentioned before that SvelteKit uses a file system based router. Everything in `./src/routes` that ends in `.svelte` will represent a routable page in your app (unless it starts with an \_ which denotes a private module.) SvelteKit's router isn't limited to serving up pages though, it can also serve up **endpoints**. Endpoints are modules writting in .js (or in our case .ts) files that export functions corresponding to HTTP methods. More details about the implementation of endpoints is available [here](https://kit.svelte.dev/docs#routing-endpoints).
+
+Create the following structure underneath your `./src/routes` folder:
+
+<pre>
+- 📂src
+  ...
+  - 📂 routes
+    - 📂 <b>posts</b>
+      - 📃 <b>[slug].json.ts</b> (Endpoint at <em>/posts/[slug].json</em>)
+      - 📃 <b>index.json.ts</b> (Endpoint at <em>/posts.json</em>)
+      - 📃 <b>recent-posts.json.ts</b> (Endpoint at <em>/posts/recent-posts.json</em>)
+</pre>
+
+The previous files can be filled with the following snippets:
+
+-   `/src/routes/posts/[slug].json.ts` - Fill this with SNIPPETS/11.txt
+    -   This endpoint is an HTTP get that returns information for a single post, based on the dynamic slug parameter being provided.
+-   `/src/routes/posts/index.json.ts` - Fill this with SNIPPETS/12.txt
+    -   This endpoint is an HTTP get that returns information for all posts.
+-   `/src/routes/posts/recent-posts.json.ts` - Fill this with SNIPPETS/13.txt
+    -   This endpoint is an HTTP get that returns information for recent posts.
+
+All of the above endpoints depend on scripts and functions in `./src/lib`. To see what a function in the endpoint is doing, click on it and hit F12 to go to the functions definition.
+
+In our case, our endpoints are going to be turned into Netlify Serverless functions via the Netlify Adapter defined in our svelte.config.js. More information on the Netlify adapter is available [here](https://github.com/sveltejs/kit/tree/master/packages/adapter-netlify).
+
+## Time To Compose Our Pages
+
+Now that we've got our components, and our endpoints ready to go, let's put together our home page, shall we?
+
+Let's start by replacing the contents of `./src/routes/index.svelte` with the contents of SNIPPETS/14.txt.
+
+Things of note on our home page:
+
+-   We're telling SvelteKit that we want to prerender this page via the following code:
+    ```html
+    <script context="module">
+        export const prerender = true;
+        ...
+    </script>
+    ```
+-   The `load` function that we've defined is getting data from our `/posts/recent-posts.json` endpoint that we created to populate the Blog Snippets on the home page. It's important that we use SvelteKit's provided fetch method to prevent duplicate requests to the endpoint. Loading in SvelteKit is a complex topic, and more information and details can be found in [SvelteKit Docs](https://kit.svelte.dev/docs#loading).
+-   We're finally importing and consuming our `Hero` and `BlogSnippets` components which will be displayed on the page.
+
+At this point you should be able to run `npm run dev` and see your home page live and in action at http://localhost:3000.
