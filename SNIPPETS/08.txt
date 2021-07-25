@@ -1,0 +1,56 @@
+<script>
+    import dayjs from 'dayjs';
+    import marked from 'marked';
+    import { convert } from 'html-to-text';
+
+    export let post;
+
+    // Retrieves the first X words of the post
+    function getSnippet(content, numWords) {
+        // Convert the html content to plain text.
+        content = convert(content, {
+            selectors: [
+                { selector: 'h1', options: { uppercase: false } },
+                { selector: 'h2', options: { uppercase: false } },
+                { selector: 'h3', options: { uppercase: false } },
+                { selector: 'h4', options: { uppercase: false } },
+                { selector: 'h5', options: { uppercase: false } },
+                { selector: 'h6', options: { uppercase: false } }
+            ]
+        });
+
+        let snippet = content.split(' ');
+        snippet = snippet.slice(0, numWords);
+        snippet = snippet.join(' ');
+        return snippet;
+    }
+</script>
+
+<div
+    class="flex flex-col overflow-hidden border-[1px] border-t-[5px] border-t-blog-primary border-x-[#cccccc] border-b-[#bbbbbb] rounded-lg"
+>
+    <div class="flex-1 bg-white p-6 flex flex-col justify-between">
+        <div class="flex-1">
+            <a href="/article/{post.slug}" class="block mt-2">
+                <p class="text-xl font-semibold text-gray-900">{post.title}</p>
+                <p class="mt-3 text-base text-gray-500">
+                    {getSnippet(marked(post.content), 30)}
+                </p>
+            </a>
+        </div>
+        <div class="mt-3 flex items-center">
+            <div>
+                <p class="text-sm font-medium text-gray-600">
+                    <a href="/" class="hover:underline">{post.author}</a>
+                </p>
+                <div class="flex space-x-1 text-sm text-gray-500">
+                    <time datetime={dayjs(post.date).format('YYYY-DD-MM')}
+                        >{dayjs(post.date).format('MMM D, YYYY')}</time
+                    >
+                    <span aria-hidden="true"> &middot; </span>
+                    <span> {post.readTimeMinutes} min read </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

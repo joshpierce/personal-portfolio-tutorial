@@ -1,4 +1,38 @@
-<!-- SNIPPET-06 -->
+<script lang="ts">
+    // This navbar is loosely based on the tutorial here: https://w3collective.com/responsive-navbar-tailwind-css/
+    // The source code for the tutorial is located here: https://gist.github.com/w3collective/516123bb36c4b8333235d9eed88c1457
+    // Most of the changes to this navbar have been done to "sveltify" it, and change some styling options.
+
+    // Imports from Svelte's animation libraries for animating the mobile navbar
+    import { fade, fly } from 'svelte/transition';
+    import { quadInOut } from 'svelte/easing';
+    // The Definition file for our Navbar Links
+    import links from '../lib/navbar-links';
+    // Font Awesome for Svelte
+    import Fa from 'svelte-fa';
+    import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+    // Small utility for "click outside" functionality on the mobile navbar
+    import { clickOutside } from '../lib/clickOutside';
+
+    // Variable setup for whether or not the menu is open
+    let menuIsOpen = false;
+    // Variable setup for tracking the current width of the navbar element
+    let navWidth;
+
+    // $: Reactive Declaration, where if the navbarwidth changes, we close the nav drawer.
+    $: if (navWidth) {
+        menuIsOpen = false;
+    }
+
+    // Function that closes the nav drawer when the user clicks outside
+    function handleClickOuside(event) {
+        menuIsOpen = false;
+    }
+    // Function that toggles the menu open/closed
+    function toggleMenu() {
+        menuIsOpen = !menuIsOpen;
+    }
+</script>
 
 <nav
     class="flex flex-wrap items-center justify-between md:py-5 md:px-10 lg:px-20 bg-white shadow-sm"
@@ -7,7 +41,7 @@
     on:click_outside={handleClickOuside}
 >
     <span class="font-semibold uppercase text-lg py-7 pl-10 md:py-0 md:pl-0">
-        <a href="/">Joshua Pierce</a>
+        <a href="/">[Your Name Here]</a>
     </span>
     <div class="flex md:hidden py-7 pr-10">
         <button

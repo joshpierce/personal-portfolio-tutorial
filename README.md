@@ -157,7 +157,9 @@ Every great portfolio page has a centralized way to navigate to different parts 
 
 Inside of `./src/components` create a new file called `Navbar.svelte`, and fill it with the contents of **SNIPPETS/05.txt**
 
-Now is a good time for us to talk about the structure of a component in Svelte (these .svelte files). A svelte component can contains javascript for functionality, css for styling, and html for structure. Typically a Svelte component will be laid out like the following:
+Now is a good time for us to talk about the structure of a component in Svelte (these .svelte files). A svelte component can contains javascript for functionality, css for styling, and html for structure. Think of Svelte Components like building blocks. When you put a few blocks together you create something that can be placed and removed while re-using that existing component.
+
+Typically a Svelte component will be laid out like the following:
 
 ```html
 <!-- example.svelte Svelte Component -->
@@ -180,3 +182,132 @@ All of those things living side-by-side harmoniously inside a single file? Blasp
 Our `Navbar.svelte` component contains both javascript and structure, but not styles, as we're mainly using TailwindCSS for composing our styles. That's just fine.
 
 Take a minute to read through the comments in Navbar.svelte to better understand what's going on under the hood.
+
+⭐ **Action Item** - Find the block of text labeled [Your Name Here] and replace it with your name. My name might be cool, but yours is cooler.
+
+⭐ **Action Item** - Be sure to save your files as you're copying snippets over to them (ctrl/cmd + s) is your friend.
+
+## Svelte Logic Blocks
+
+### #if Blocks
+
+You may have noticed inside the navbar component on Line 52, that we're using something foreign to normal html. This is a Svelte If block, which allows you to conditionally render some html, based on the evaluation of the block.
+
+In the following example, the page would read 'The Number is Greater Than 50' because the If block would evaluate to true.
+
+```html
+<script>
+    let someNumber = 1337;
+</script>
+
+{#if someNumber > 50}
+<p>The Number is Greater Than 50</p>
+{/if}
+```
+
+Svelte Logic Blocks can even handle else and else-if blocks, both prepended with a colon, like the following example:
+
+```html
+<script>
+    let someNumber = 42;
+</script>
+
+{#if someNumber > 50}
+<p>The Number is Greater Than 50</p>
+{:else-if someNumber == 42}
+<p>This is the meaning of life.</p>
+{:else}
+<p>This number is neither the meaning of life, nor is it greater than 50.</p>
+{/if}
+```
+
+### #each blocks
+
+Each Logic Blocks are used to iterate over a list of data and render something for each entry. Below is an example of a #each block used to list out the members of the a band.
+
+```html
+<script>
+    let members = [
+        { name: 'Griffin', funFact: 'Has a pet wolf.' },
+        { name: 'Matt', funFact: 'His fans are called "Matt Bratts".' },
+        { name: 'Boo Boo', funFact: 'His birthday is in October.' },
+        { name: 'Allen', funFact: 'Loves poetry.' }
+    ];
+</script>
+
+<ul>
+    {#each members as member}
+    <li>
+        {member.name} - {member.funFact} {/each}
+        <ul></ul>
+    </li>
+</ul>
+```
+
+Currently our Navbar is using a #each block (line 60) to iterate over the list of links for the navbar and display each one.
+
+### Svelte Animations
+
+We won't dive too deep into this for the purposes of the tutorial, but you can see between lines 63 and 78, we've thrown in some Svelte animations for the mobile navbar drawer. To get more information on Svelte Animations and what you can do with them, check out the [Svelte Docs](https://svelte.dev/docs#in_fn_out_fn).
+
+## Using Your New Navbar Component in Another Page
+
+So you've added the navbar component to your app, but when you `npm run dev`, you don't see it anywhere. We have to consume the component on the pages we want to display it on.
+
+You can add a Svelte Component to any other svelte by importing it in your script tag, and then just using the component by the name it's defined as.:
+
+```html
+<!-- index.svelte example -->
+
+<script>
+    // Import the component
+    import Navbar from '../components/Navbar.svelte';
+</script>
+
+<!-- Adding our component to the structure of our page -->
+<Navbar />
+```
+
+While we could open up our 4 different page routes and add the component to each of them, that definitely seems wrong. There's good news though, Svelte has the concept of a Layout file (`./src/routes/__layout.svelte`) that gets used to wrap our other page components. The layout file is a great place to handle things like our navbar and out footer.
+
+To add our Navbar component to all of our existing routed pages, head over to `./src/routes/__layout.svelte` and replace the file contents with those of **SNIPPETS/06.txt**.
+
+Save your `__layout.svelte` file and then re-run `npm run dev`. You should now have a navbar with working links to your different routes.
+
+## We Need A Hero
+
+Our home page should really make a big splash with a "hero" section welcoming people to our corner of the internet. Create a new file at `/src/components/Hero.svelte` and fill it with the contents of SNIPPETS/07.txt.
+
+Taking a look at this component, we notice some new syntax in between our script tags.
+
+```html
+<script>
+    export let title;
+    export let subTitle;
+</script>
+```
+
+This is how you declare component properties (props) in Svelte. It will allow us to consume our Hero component in different places throughout our app, but dynamically pass title, and subtitle so the hero will render differently.
+
+```html
+<Hero
+    title="Something, Something, Something, Darkside"
+    subTitle="Something, Something, Something, Complete"
+/>
+```
+
+One other subtle but important new item is the data binding `{@html ...}` within the subtitle. This allows us to render dynamic html to the page. If we were to bind an html string without including this tag, our users would see our markup, instead of the rendered html.
+
+> Note: Svelte doesn't do any sanitizing of the html that's being bound, so you need to be careful with html that comes from outside sources as you could risk exposing your users to XSS attacks. [More Info Here](https://svelte.dev/docs#html).
+
+Our component is ready to be consumed, but we've got a few more components to create before we can finalize render this to a page.
+
+## We Need More Content
+
+We're now going to create the couple of components that are required for us to display blog snippets on the home page. One will be the container component that will hold many blog snippets, the next will be the component holding the structure for the snippet itself, and lastly we'll create a Pager component for when our blog snippets should be paged.
+
+Create the following files, and copy their snippets in.
+
+-   `./src/components/BlogSnippet.svelte` -> SNIPPETS/08.txt
+-   `./src/components/BlogSnippets.svelte` -> SNIPPETS/09.txt
+-   `./src/components/Pager.svelte` -> SNIPPETS/10.txt
