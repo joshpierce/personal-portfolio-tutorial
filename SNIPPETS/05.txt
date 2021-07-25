@@ -1,0 +1,70 @@
+<!-- SNIPPET-06 -->
+
+<nav
+    class="flex flex-wrap items-center justify-between md:py-5 md:px-10 lg:px-20 bg-white shadow-sm"
+    bind:clientWidth={navWidth}
+    use:clickOutside
+    on:click_outside={handleClickOuside}
+>
+    <span class="font-semibold uppercase text-lg py-7 pl-10 md:py-0 md:pl-0">
+        <a href="/">Joshua Pierce</a>
+    </span>
+    <div class="flex md:hidden py-7 pr-10">
+        <button
+            id="hamburger"
+            class="active:border-none focus:outline-none"
+            on:click|preventDefault={toggleMenu}
+        >
+            {#if !menuIsOpen}
+                <Fa icon={faBars} />
+            {:else}
+                <Fa icon={faTimes} />
+            {/if}
+        </button>
+    </div>
+    <div class="toggle hidden md:w-auto md:flex text-right text-bold mt-5 mt-0 border-none">
+        {#each links as link, idx}
+            <a
+                href={link.url}
+                rel="external"
+                class="block md:inline-block text-gray-600 hover:text-gray-900 px-10 md:px-5 py-3 border-b border-gray-100 last:border-none md:border-none"
+            >
+                {link.title}
+            </a>
+        {/each}
+    </div>
+    <!--Mobile Links-->
+    {#if menuIsOpen}
+        <div
+            in:fly={{
+                delay: 0,
+                duration: 300,
+                y: 0,
+                x: navWidth * -1,
+                opacity: 0.5,
+                easing: quadInOut
+            }}
+            out:fly={{
+                delay: 0,
+                duration: 300,
+                y: 0,
+                x: navWidth * -1,
+                opacity: 0.5,
+                easing: quadInOut
+            }}
+            class={`w-full text-bold mt-0 pb-1 md:hidden absolute bg-white top-[83px] z-10`}
+        >
+            {#each links as link, idx}
+                <a
+                    href={link.url}
+                    rel="external"
+                    on:click={toggleMenu}
+                    class="block md:inline-block text-gray-600 hover:text-gray-900 px-10 md:px-5 py-3 border-b border-gray-100 last:border-none md:border-none"
+                >
+                    <Fa icon={link.icon} fw class="inline mr-2" />
+                    {link.title}
+                </a>
+            {/each}
+        </div>
+    {/if}
+</nav>

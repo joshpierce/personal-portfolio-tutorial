@@ -2,3 +2,7 @@
 node_modules
 /.svelte-kit
 /package
+/build
+/functions
+/static/postimages
+/deploy/dist

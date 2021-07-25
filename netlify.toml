@@ -1,0 +1,9 @@
+[build]
+  command = """npm i -g tsc &&
+               cp ./libx86/* node_modules/canvas/build/Release/ &&
+               npm run build               
+               """
+  publish = "build/"
+  functions = "functions/"
+[functions]
+  included_files = ["postdata/*.md","static/images/*"]
