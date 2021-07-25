@@ -27,7 +27,7 @@ You should be able to compile all the snippets and read through the content in a
     -   [Svelte For VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode) - Helper extension for authoring Svelte apps in VS Code.
     -   [vscode-icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons) - Just makes finding files by type easier in the Explorer.
 -   A Terminal - If you are using Visual Studio Code, this will be built in (`Top Menu > Terminal > New Terminal Window.`). You can always use your built in system terminal as well.
-    > I also have to advocate for [Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab). Microsoft did a killer job here and I've been incredibly impressed.
+    > I also have to advocate for [Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab) if you're on a PC. Microsoft did a killer job here and I've been incredibly impressed.
 
 # Accounts You'll Need To Complete This Tutorial
 
@@ -93,7 +93,7 @@ Inside of this repo, I've included some assets that will help you to get moving.
     -   **navbar-links.ts** - Navigation definitions file for our navbar and footer.
     -   **posts.ts** - Library of functions for retrieving, paging, and sorting posts from the markdown files included in `postdata`.
     -   **socials.ts** - Social Media definitions file for our footer and /connect pages.
--   **Hero Background Image** - I've included a hero background image in `./static/images` that you are welcome to use, or replace with your own hero-background. The source image is from unsplash by [Ryan Hutton](https://unsplash.com/@ryan_hutton_): https://unsplash.com/photos/Jztmx9yqjBw.
+-   **Hero Background Image** - I've included a hero background image in `./static/images` that you are welcome to use, or replace with your own hero-background. The source image is from unsplash by [Ryan Hutton](https://unsplash.com/@ryan_hutton_): https://unsplash.com/photos/Jztmx9yqjBw. If you're going to use a different image, look for something dark that white text will look good on, or you'll need to tweak the text color for the hero component.
 -   **Netlify Build Config File** - I've included a `netlify.toml` in the root of the repo that will be used by netlify when deploying our solution to the web. This also contains the command to copy the Canvas Dependencies mentioned above.
 
 ## Other Modified Files
@@ -406,4 +406,38 @@ Things of note on our home page:
 -   The `load` function that we've defined is getting data from our `/posts/recent-posts.json` endpoint that we created to populate the Blog Snippets on the home page. It's important that we use SvelteKit's provided fetch method to prevent duplicate requests to the endpoint. Loading in SvelteKit is a complex topic, and more information and details can be found in [SvelteKit Docs](https://kit.svelte.dev/docs#loading).
 -   We're finally importing and consuming our `Hero` and `BlogSnippets` components which will be displayed on the page.
 
+⭐ Action Item - Replace the title and subtitle on the Hero component implementation to reflect who you are.
+
+```html
+
+```
+
 At this point you should be able to run `npm run dev` and see your home page live and in action at http://localhost:3000.
+
+## Finishing Up Our Other Pages
+
+Let's start with the blog list page. This page at `/blog/[page]` will display all of the articles of content that you have published.
+
+Go ahead and replace the contents of `./src/routes/blog/[page].svelte` with the contents of SNIPPETS/15.txt.
+
+Looking at the code that's provided for our blog list page, we can see a couple different things going on here:
+
+-   Inside our `load` function, we're taking in the page number being requested via the `page.params.page`. This is where your dynamics parameters from the route `[page].svelte` end up, available for your consumption.
+-   We're getting data back from our endpoint for this page of blog articles, and doing a little bit of js tricker to provide the pages to our Pager component.
+-   If we don't get a successful response from our endpoint, we're returning the error, which will prevent the blog list from loading. In a production environment it's best to obscure the error from the client, which is why we're just returning a generic error message. You can also define a custom error page (or scoped pages) for your SvelteKit app. More information on how to do that in the SvelteKit docs [here](https://kit.svelte.dev/docs#layouts-error-pages).
+-   We're reusing our BlogSnippets component to display the page of data for our blog list. Component reuse is what makes these frameworks so awesome to work with.
+
+Next we'll handle the single page article and it's contents.
+
+Go ahead and replace the contents of `./src/routes/article/[slug].svelte` with the contents of SNIPPETS/16.txt.
+
+Things to note about the article page:
+
+-   We're using our endpoints to retrieve the data for the single post that we're loading.
+-   If we don't get a successful response from our endpoint, we're returning the error, which will prevent the article from loading. We're doing the same thing here with our obscure error message back to the client.
+-   Introducing our first built in Svelte element `<svelte:head>...</svelte:head>`. This element allows us to insert elements into the head of our document. Since we're sending rendered pages back to the client, this allows us to set things in the head dynamically for SEO and link unfurling.
+-   We're taking the markdown that we retrieve from our postdata for the article, and converting it to html with [marked](https://www.npmjs.com/package/marked).
+
+Again, you should be able to run `npm run dev` and open your single post to see it in all it's glory.
+
+Finall

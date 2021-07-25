@@ -20,8 +20,8 @@
 </script>
 
 <Hero
-    title="Hi! 👋 I'm Josh, Nice To Meet You!"
-    subTitle="I craft software with 🧡 from Milwaukee, WI."
+    title="[Your Title Here]"
+    subTitle="[Your Subtitle Here]"
 />
 
 <BlogSnippets {posts} title="Recent Posts" />
