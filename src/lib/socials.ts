@@ -11,52 +11,70 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 
 interface Social {
-    title: string;
+    name: string;
     url: string;
     icon: IconDefinition;
+    bgColor: string;
+    color: string;
 }
 
 const socials: Social[] = [
     // {
-    //     title: 'Facebook',
+    //     name: 'Facebook',
     //     url: '',
-    //     icon: faFacebook
+    //     icon: faFacebook,
+    //     bgColor: '#3b5998',
+    //     color: '#ffffff'
     // },
     // {
-    //     title: 'Instagram',
+    //     name: 'Instagram',
     //     url: '',
-    //     icon: faInstagram
-    // },
-    {
-        title: 'Twitter',
-        url: 'https://twitter.com/heyjoshpierce',
-        icon: faTwitter
-    },
-    {
-        title: 'Github',
-        url: 'https://github.com/joshpierce',
-        icon: faGithub
-    },
-    // {
-    //     title: 'Twitch',
-    //     url: '',
-    //     icon: faTwitch
+    //     icon: faInstagram,
+    //     bgColor: '#4c5fd7',
+    //     color: '#ffffff'
     // },
     // {
-    //     title: 'Youtube',
-    //     url: '',
-    //     icon: faYoutube
+    //     name: 'Twitter',
+    //     url: 'https://twitter.com/heyjoshpierce',
+    //     icon: faTwitter,
+    //     bgColor: '#1da1f2',
+    //     color: '#ffffff'
     // },
     // {
-    //     title: 'Dribbble',
-    //     url: '',
-    //     icon: faDribbble
+    //     name: 'Github',
+    //     url: 'https://github.com/joshpierce',
+    //     icon: faGithub,
+    //     bgColor: '#000000',
+    //     color: '#ffffff'
     // },
-    {
-        title: 'LinkedIn',
-        url: 'https://www.linkedin.com/in/joshuampierce/',
-        icon: faLinkedin
-    }
+    // {
+    //     name: 'Twitch',
+    //     url: '',
+    //     icon: faTwitch,
+    //     bgColor: '#9146ff',
+    //     color: '#ffffff'
+    // },
+    // {
+    //     name: 'Youtube',
+    //     url: '',
+    //     icon: faYoutube,
+    //     bgColor: '#ffffff',
+    //     color: '#ff0000'
+    // },
+    // {
+    //     name: 'Dribbble',
+    //     url: '',
+    //     icon: faDribbble,
+    //     bgColor: '#ea4c89',
+    //     color: '#ffffff'
+    // },
+    // {
+    //     name: 'LinkedIn',
+    //     url: '',
+    //     icon: faLinkedin,
+    //     bgColor: '#0a66c2',
+    //     color: '#ffffff'
+    // }
 ];
 
 export default socials;
