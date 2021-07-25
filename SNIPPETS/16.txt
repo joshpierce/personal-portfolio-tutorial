@@ -3,15 +3,18 @@
 
     export async function load({ page, fetch, session, context }) {
         // Retrieve data about the post
-        const slug = page.params.slug;
-        const url = `/posts/${slug}.json`;
+        const pageNum = +page.params?.page || 1;
+        const url = `/posts.json?page=${pageNum}`;
         const res = await fetch(url);
 
         // If the response is successful, render the post
         if (res.ok) {
+            const { pages, posts } = await res.json();
             return {
                 props: {
-                    post: await res.json()
+                    pages: new Array(pages).fill(0).map((x, idx) => idx + 1),
+                    posts,
+                    pageNum
                 }
             };
         }
@@ -25,38 +28,14 @@
 </script>
 
 <script>
-    import marked from 'marked';
-    import Hero from '../../components/Hero.svelte';
-    import dayjs from 'dayjs';
+    import BlogSnippets from '../../components/BlogSnippets.svelte';
 
-    export let post;
+    export let posts;
+    export let pages;
+    export let pageNum;
 
-    function getSnippet(content, numWords) {
-        let snippet = content.split(' ');
-        snippet = snippet.slice(0, numWords);
-        snippet = snippet.join(' ');
-        return snippet;
-    }
 </script>
 
-<svelte:head>
-    <meta property="og:image" content="/postimages/{post.slug}.jpg/" />
-    <meta property="og:title" content={post.title} />
-    <meta property="og:description" content={getSnippet(post.content, 30)} />
-</svelte:head>
-
-<Hero
-    title={post.title}
-    subTitle={`By&nbsp;${post.author} | ${dayjs(post.date)
-        .format('MMMM D, YYYY')
-        .replace(' ', '&nbsp;')} | ${post.readTimeMinutes}&nbsp;min&nbsp;read`}
-/>
-<div>
-    <article class="prose lg:prose-xl px-4 mx-auto mt-5">{@html marked(post.content)}</article>
+<div class="flex-grow bg-gray-50">
+    <BlogSnippets title="The Blog" {posts} {pages} {pageNum} />
 </div>
-
-<style>
-    p {
-        padding-top: 0.5rem;
-    }
-</style>

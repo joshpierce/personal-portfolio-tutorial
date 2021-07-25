@@ -359,6 +359,14 @@ The BlogSnippets and BlogSnippet/Pager components are great examples of using ne
 
     Even though the nested Cat component, and the outer CatsList component both utilize the p tag, only the CatsList component's p tag will be styled in a red color.
 
+## Last Build Block, I Swear
+
+We need one more component that will handle displaying our social links on our `/connect` page.
+
+Create the following component `./src/components/ConnectIcon.svelte` and fill it with the contents of SNIPPETS/11.txt
+
+There isn't anything too crazy or new going on here, other than the usage of css variables for styling the component. This allows us to set custom background colors and text colors on each item from the list of data in `socials.ts`. It's important to note that some of the colors you've seen used with Tailwind JIT, like `text-[#2c2c2c]` seem like they could be used to populate the colors in this case. This is not the case as something like `text-[${social.color}]` doesn't get evaluated until after Tailwind has already compiled it's custom css.
+
 ## All this UI and No Data
 
 So far we've pulled together almost all of the components that we'll need to drive our new portfolio page, but we need to have some data as well. This is one of the superpowers ⚡ of SvelteKit. I mentioned before that SvelteKit uses a file system based router. Everything in `./src/routes` that ends in `.svelte` will represent a routable page in your app (unless it starts with an \_ which denotes a private module.) SvelteKit's router isn't limited to serving up pages though, it can also serve up **endpoints**. Endpoints are modules writting in .js (or in our case .ts) files that export functions corresponding to HTTP methods. More details about the implementation of endpoints is available [here](https://kit.svelte.dev/docs#routing-endpoints).
@@ -377,11 +385,11 @@ Create the following structure underneath your `./src/routes` folder:
 
 The previous files can be filled with the following snippets:
 
--   `/src/routes/posts/[slug].json.ts` - Fill this with SNIPPETS/11.txt
+-   `/src/routes/posts/[slug].json.ts` - Fill this with SNIPPETS/12.txt
     -   This endpoint is an HTTP get that returns information for a single post, based on the dynamic slug parameter being provided.
--   `/src/routes/posts/index.json.ts` - Fill this with SNIPPETS/12.txt
+-   `/src/routes/posts/index.json.ts` - Fill this with SNIPPETS/13.txt
     -   This endpoint is an HTTP get that returns information for all posts.
--   `/src/routes/posts/recent-posts.json.ts` - Fill this with SNIPPETS/13.txt
+-   `/src/routes/posts/recent-posts.json.ts` - Fill this with SNIPPETS/14.txt
     -   This endpoint is an HTTP get that returns information for recent posts.
 
 All of the above endpoints depend on scripts and functions in `./src/lib`. To see what a function in the endpoint is doing, click on it and hit F12 to go to the functions definition.
@@ -392,7 +400,7 @@ In our case, our endpoints are going to be turned into Netlify Serverless functi
 
 Now that we've got our components, and our endpoints ready to go, let's put together our home page, shall we?
 
-Let's start by replacing the contents of `./src/routes/index.svelte` with the contents of SNIPPETS/14.txt.
+Let's start by replacing the contents of `./src/routes/index.svelte` with the contents of SNIPPETS/15.txt.
 
 Things of note on our home page:
 
@@ -418,7 +426,7 @@ At this point you should be able to run `npm run dev` and see your home page liv
 
 Let's start with the blog list page. This page at `/blog/[page]` will display all of the articles of content that you have published.
 
-Go ahead and replace the contents of `./src/routes/blog/[page].svelte` with the contents of SNIPPETS/15.txt.
+Go ahead and replace the contents of `./src/routes/blog/[page].svelte` with the contents of SNIPPETS/16.txt.
 
 Looking at the code that's provided for our blog list page, we can see a couple different things going on here:
 
@@ -429,7 +437,7 @@ Looking at the code that's provided for our blog list page, we can see a couple 
 
 Next we'll handle the single page article and it's contents.
 
-Go ahead and replace the contents of `./src/routes/article/[slug].svelte` with the contents of SNIPPETS/16.txt.
+Go ahead and replace the contents of `./src/routes/article/[slug].svelte` with the contents of SNIPPETS/17.txt.
 
 Things to note about the article page:
 
@@ -440,4 +448,14 @@ Things to note about the article page:
 
 Again, you should be able to run `npm run dev` and open your single post to see it in all it's glory.
 
-Finall
+## Getting Social
+
+When people make it to your personal portfolio online, you should give them an easy way to connect with you on the social media platforms you utilize. This repo provides you with a file called `./src/lib/socials.ts` which contains a list of a handful of social platforms that I've preloaded names, and color schemes for. Any of them that you want to list for yourself, should be uncommented, and you should add your personal url (full urls, example for twitter: https://twitter.com/heyjoshpierce).
+
+Make sure to save the socials.ts file and then continue on to creating your /connect page.
+
+Go ahead and replace the contents of `./src/routes/connect.svelte` with the contents of SNIPPETS/18.txt.
+
+-   This component is simply ingesting the list of social sites you have turned on in the previous step, and displaying them as links for people to go and connect with you online.
+
+[to be continued...]

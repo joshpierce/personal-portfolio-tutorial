@@ -1,15 +1,30 @@
-import type { EndpointOutput } from '@sveltejs/kit';
-import { getPostData, getPostBySlug, Post } from '../../lib/posts';
+<script>
+    import Fa from 'svelte-fa';
 
-export async function get({ params }): Promise<EndpointOutput> {
-    console.log(`GET: /posts/${params.slug}.json`);
-    const post: Post = getPostBySlug(params.slug);
+    export let name;
+    export let icon;
+    export let url;
+    export let bgColor;
+    export let color;
 
-    const postWithData = getPostData(post);
+    let cssVarStyles = `--card-color:${color};--card-bg-color:${bgColor}`;
+</script>
 
-    if (postWithData) {
-        return {
-            body: JSON.stringify(postWithData)
-        };
+<a href={url} target="_blank">
+    <div
+        class="flex flex-col overflow-hidden border-[1px] border-t-[#dddddd] border-x-[#cccccc] border-b-[#bbbbbb] rounded-lg"
+        style={cssVarStyles}
+    >
+        <div class="flex-1 my-card p-16 flex flex-col items-center justify-between">
+            <Fa {icon} size="2x" />
+            <p class="mt-3">{name}</p>
+        </div>
+    </div>
+</a>
+
+<style>
+    .my-card {
+        background-color: var(--card-bg-color);
+        color: var(--card-color);
     }
-}
+</style>

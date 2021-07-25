@@ -1,27 +1,16 @@
-<script context="module">
-    export const prerender = true;
+import type { EndpointOutput } from '@sveltejs/kit';
+import { getAllPostFiles, sortPostsByDate, getPostsPage, getPostsData } from '../../lib/posts';
 
-    export async function load({ page, fetch, session, context }) {
-        let res = await fetch('/posts/recent-posts.json');
+export async function get(): Promise<EndpointOutput> {
+    console.log('GET: /posts/recent-posts.json');
+    const posts = getAllPostFiles();
+    const sortedPosts = sortPostsByDate(posts);
+    const recentPosts = getPostsPage(sortedPosts, 1, 3);
+    const recentPostsWithData = getPostsData(recentPosts);
 
+    if (recentPosts) {
         return {
-            props: {
-                posts: await res.json()
-            }
+            body: JSON.stringify(recentPostsWithData)
         };
     }
-</script>
-
-<script>
-    import Hero from '../components/Hero.svelte';
-    import BlogSnippets from '../components/BlogSnippets.svelte';
-
-    export let posts;
-</script>
-
-<Hero
-    title="[Your Title Here]"
-    subTitle="[Your Subtitle Here]"
-/>
-
-<BlogSnippets {posts} title="Recent Posts" />
+}

@@ -35,14 +35,14 @@ const socials: Social[] = [
     // },
     // {
     //     name: 'Twitter',
-    //     url: 'https://twitter.com/heyjoshpierce',
+    //     url: '',
     //     icon: faTwitter,
     //     bgColor: '#1da1f2',
     //     color: '#ffffff'
     // },
     // {
     //     name: 'Github',
-    //     url: 'https://github.com/joshpierce',
+    //     url: '',
     //     icon: faGithub,
     //     bgColor: '#000000',
     //     color: '#ffffff'
