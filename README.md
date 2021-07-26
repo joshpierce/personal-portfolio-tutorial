@@ -87,6 +87,7 @@ Inside of this repo, I've included some assets that will help you to get moving.
 -   **Custom Pre-Deploy Script** - This repository uses a pre-deploy script to generate custom images for each post to be used in social media when sharing your posts. This script is located in `./deploy` along with it's corresponding `tsconfig.json`. For this tutorial, you shouldn't need to tweak anything here.
 -   **Runtime Libraries for Canvas on Netlify** - The previous script uses [node-canvas](https://github.com/Automattic/node-canvas) for generating the custom post images at build time. Canvas running on Netlify will fail without these couple of critical binaries available.
 -   **PostData Folder With Sample Post** - I've included a folder called `./postdata` that contains a sample posting for the blog section of your portfolio. You can feel free to keep this post alive, or delete it once you've added your own content.
+    -   ⭐️ Action Item - You will at a minimum need to update the author of this post where it says [Your Name Here]
 -   **TypeScript Helpers** - We could blow this tutorial out to a full week course if we wanted to get that deep in the weeds, but for the time being, I've included some basic TypeScript helpers in the `./src/lib` folder. Descriptions of each file are below
     -   **additional-svelte-jsx.d.ts** - Typings file for allowing our "click outside to close" handler for your navbar to get along with TypeScript.
     -   **clickOutside.ts** - Handlers for the "click outside to close" handler for your navbar.
