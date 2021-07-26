@@ -1,6 +1,6 @@
 # Personal Portfolio Tutorial
 
-This repository [joshpierce/personal-portfolio-tutorial](https://github.com/joshpierce/personal-portfolio-tutorial) was originally created for a workshop presentation at THAT Conference 2021 - Wisconsin Dells, WI. The repository as it stands is a ready-to-pull starter kit for building out your own Personal Portfolio online.
+This repository [joshpierce/personal-portfolio-tutorial](https://github.com/joshpierce/personal-portfolio-tutorial) was originally created for a workshop presentation at THAT Conference 2021 - Wisconsin Dells, WI. The repository as it stands is a ready-to-tweak starter kit for building out your own Personal Portfolio online.
 
 Technology Used In This Tutorial
 
