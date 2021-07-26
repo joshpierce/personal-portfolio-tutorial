@@ -207,7 +207,7 @@ In the following example, the page would read 'The Number is Greater Than 50' be
 {/if}
 ```
 
-If `someNumber` was less than 50, the entire <p> tag would be excluded from the DOM.
+If `someNumber` was less than 50, the entire `<p>` tag would be excluded from the DOM.
 
 Svelte Logic Blocks can even handle else and else-if blocks, both prepended with a colon, like the following example:
 
