@@ -1,29 +1,9 @@
 <script>
     import dayjs from 'dayjs';
     import marked from 'marked';
-    import { convert } from 'html-to-text';
+    import { getSnippet } from '../lib/post-helpers';
 
     export let post;
-
-    // Retrieves the first X words of the post
-    function getSnippet(content, numWords) {
-        // Convert the html content to plain text.
-        content = convert(content, {
-            selectors: [
-                { selector: 'h1', options: { uppercase: false } },
-                { selector: 'h2', options: { uppercase: false } },
-                { selector: 'h3', options: { uppercase: false } },
-                { selector: 'h4', options: { uppercase: false } },
-                { selector: 'h5', options: { uppercase: false } },
-                { selector: 'h6', options: { uppercase: false } }
-            ]
-        });
-
-        let snippet = content.split(' ');
-        snippet = snippet.slice(0, numWords);
-        snippet = snippet.join(' ');
-        return snippet;
-    }
 </script>
 
 <div
