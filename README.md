@@ -1,12 +1,12 @@
 # Personal Portfolio Tutorial
 
-This repository [joshpierce/personal-portfolio-tutorial](https://github.com/joshpierce/personal-portfolio-tutorial) was originally created for a workshop presentation at THAT Conference 2021 - Wisconsin Dells, WI. The repository as it stands is a ready-to-tweak starter kit for building out your own Personal Portfolio online.
+This repository [joshpierce/personal-portfolio-tutorial](https://github.com/joshpierce/personal-portfolio-tutorial) was originally created for a workshop presentation at [THAT Conference 2021](https://that.us) - Wisconsin Dells, WI. The repository as it stands is a ready-to-tweak starter kit for building out your own Personal Portfolio site.
 
 Technology Used In This Tutorial
 
--   [SvelteKit](https://kit.svelte.dev) - This is the UI ([Svelte](https://svelte.dev)) and App Framework for the portfolio.
+-   [SvelteKit](https://kit.svelte.dev) - This is the UI ([Svelte](https://svelte.dev)) and App Framework for your portfolio.
 -   [TailwindCSS](https://tailwindcss.com) - This is the CSS Framework used for style composition.
--   [Netlify](https://netlify.com) - This is the JamStack provider that will host our page.
+-   [Netlify](https://netlify.com) - This is the JamStack provider that will host your page.
 -   [Cloudflare](https://cloudflare.com) - We'll use cloudflare for DNS.
 
 # What Will You Build?
@@ -21,7 +21,7 @@ You should be able to compile all the snippets and read through the content in a
 
 -   [Node/NPM](https://nodejs.org) - Personally, I use NVM (because it's the 🐐) but for this tutorial, the LTS version should work.
 -   [GIT](https://git-scm.com/downloads) - Latest version ought to do.
--   [Visual Studio Code](https://code.visualstudio.com) - This is where we'll be editing our source files.
+-   [Visual Studio Code](https://code.visualstudio.com) - This is where you'll be editing your source files.
     **Suggested Extensions** (Not Required, But Nice To Have):
     -   [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) - Code Formatter.
     -   [Svelte For VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode) - Helper extension for authoring Svelte apps in VS Code.
@@ -32,22 +32,22 @@ You should be able to compile all the snippets and read through the content in a
 # Accounts You'll Need To Complete This Tutorial
 
 -   [GitHub](https://github.com) - This is where you'll be publishing your code and tracking your source.
--   [Netlify](https://netlify.com) - This is the JAMStack provider that we'll be using to deploy our site.
+-   [Netlify](https://netlify.com) - This is the JAMStack provider that you'll be using to deploy your site.
 
 ### Optional
 
 -   [NameCheap](https://namecheap.com) - You can technically use any domain name provider, pick your poison.
--   [Cloudflare](https://cloudflare.com) - Again, there are lots of ways to do DNS, and we'll be using cloudflare to point our domain at our newly hosted Netlify site.
+-   [Cloudflare](https://cloudflare.com) - Again, there are lots of ways to do DNS, and you'll be using cloudflare to point your domain at your newly hosted Netlify site.
 
 # Let's get started
 
 To get started you'll need to bring this repository down locally and run a few commands to get everything ready to go.
 
-You'll want your own copy of this repository. Get yours by [Forking This Repo](https://github.com/joshpierce/personal-portfolio-tutorial/fork).
+You'll want your own copy of this repository. Get yours by clicking this -> [Fork This Repo](https://github.com/joshpierce/personal-portfolio-tutorial/fork).
 
 > Note: after forking the repo, you can click the ⚙ icon, and the first setting available should give you the option to rename your repo however you'd like.
 
-Next we'll want to create or navigate to a folder where you'd like to keep your project. Then run the following commands in order.
+Next you'll want to create or navigate to a folder where you'd like to keep your project. Then run the following commands in order at the command line.
 
 ```bash
 # Clone your repository (you may be asked to login to github at this point.)
@@ -68,7 +68,7 @@ Awesome, this is exciting, you have your own SvelteKit app up and running locall
 
 # Tutorial Assets
 
-Inside of this repo, I've included some assets that will help you to get moving. I've added a list below of the things that are included above and beyond a vanilla SvelteKit app initialization. Don't worry if there are things in this list that are unfamiliar now, they'll become more clear as we continue forward in the tutorial.
+Inside of this repo, I've included some assets that will help you to get moving. I've added a list below of the things that are included above and beyond a vanilla SvelteKit app initialization. Don't worry if there are things in this list that are unfamiliar now, they'll become clearer as you complete the tutorial.
 
 -   **SNIPPETS** [IMPORTANT] - The folder called SNIPPETS contains all of the building blocks that you'll need to work through this tutorial. Each snippet will be named with a number, and correspond to an entry in the repository.
 
@@ -88,13 +88,13 @@ Inside of this repo, I've included some assets that will help you to get moving.
 -   **Runtime Libraries for Canvas on Netlify** - The previous script uses [node-canvas](https://github.com/Automattic/node-canvas) for generating the custom post images at build time. Canvas running on Netlify will fail without these couple of critical binaries available.
 -   **PostData Folder With Sample Post** - I've included a folder called `./postdata` that contains a sample posting for the blog section of your portfolio. You can feel free to keep this post alive, or delete it once you've added your own content.
 -   **TypeScript Helpers** - We could blow this tutorial out to a full week course if we wanted to get that deep in the weeds, but for the time being, I've included some basic TypeScript helpers in the `./src/lib` folder. Descriptions of each file are below
-    -   **additional-svelte-jsx.d.ts** - Typings file for allowing our "click outside to close" handler for our navbar to get along with TypeScript.
-    -   **clickOutside.ts** - Handlers for the "click outside to close" handler for our navbar.
-    -   **navbar-links.ts** - Navigation definitions file for our navbar and footer.
+    -   **additional-svelte-jsx.d.ts** - Typings file for allowing our "click outside to close" handler for your navbar to get along with TypeScript.
+    -   **clickOutside.ts** - Handlers for the "click outside to close" handler for your navbar.
+    -   **navbar-links.ts** - Navigation definitions file for your navbar and footer.
     -   **posts.ts** - Library of functions for retrieving, paging, and sorting posts from the markdown files included in `postdata`.
-    -   **socials.ts** - Social Media definitions file for our footer and /connect pages.
+    -   **socials.ts** - Social Media definitions file for your footer and /connect pages.
 -   **Hero Background Image** - I've included a hero background image in `./static/images` that you are welcome to use, or replace with your own hero-background. The source image is from unsplash by [Ryan Hutton](https://unsplash.com/@ryan_hutton_): https://unsplash.com/photos/Jztmx9yqjBw. If you're going to use a different image, look for something dark that white text will look good on, or you'll need to tweak the text color for the hero component.
--   **Netlify Build Config File** - I've included a `netlify.toml` in the root of the repo that will be used by netlify when deploying our solution to the web. This also contains the command to copy the Canvas Dependencies mentioned above.
+-   **Netlify Build Config File** - I've included a `netlify.toml` in the root of the repo that will be used by netlify when deploying your solution to the web. This also contains the command to copy the Canvas Dependencies mentioned above.
 
 ## Other Modified Files
 
@@ -103,7 +103,7 @@ Inside of this repo, I've included some assets that will help you to get moving.
 
 # SvelteKit Routes
 
-Your new portfolio page is going to have the following different routes.
+Your new portfolio page is going to have the following routes.
 
 -   / - Your portfolios home page.
 -   /blog/[pageNumber] - A list of all the articles and content that you post to your portfolio. Each [pageNum] will contain sorted, and paged out snippets of your articles for ease of access.
@@ -116,7 +116,7 @@ SvelteKit uses a filesystem based router, where each route corresponds to a svel
 
 ## Creating The File Structure
 
-Let's go ahead and create a few svelte components so we can get our routing off the ground. Create the following folders and files (marked in **bold** below).
+Start by creating a few svelte components so we can get our routing off the ground. Create the following folders and files (marked in **bold** below).
 
 <pre>
 - 📂src
@@ -141,7 +141,7 @@ To check and make sure that we've set things up properly, let's add a little con
 -   `/src/routes/article/[slug].svelte` - Fill this with SNIPPETS/01.txt
 -   `/src/routes/blog/[page].svelte` - Fill this with SNIPPETS/02.txt
 -   `/src/routes/connect.svelte` - Fill this with SNIPPETS/03.txt
--   `/src/routes/index.svelte` - Fill this with SNIPPETS/04.txt
+-   `/src/routes/index.svelte` - Replace the test snippet with the contents of SNIPPETS/04.txt
 
 Once you've copied the snippets into their respective files, you should be able to open a terminal window, and run `npm run dev` to start your server. Navigating to the following urls, you should see your pages you just created.
 
@@ -150,15 +150,15 @@ Once you've copied the snippets into their respective files, you should be able 
 -   http://localhost:3000/article/hello
 -   http://localhost:3000/blog/1
 
-Cool, we've got pages! Now let's give our end users a way to navigate our portfolio.
+Cool, you've got pages! Now let's give our end users a way to navigate our portfolio.
 
 ## Adding Navigation
 
-Every great portfolio page has a centralized way to navigate to different parts of the site / app. We're going to add a Navbar component to our Svelte app.
+Every great portfolio page has a centralized way to navigate to different parts of the site / app. You're going to add a Navbar component to your Svelte app.
 
 Inside of `./src/components` create a new file called `Navbar.svelte`, and fill it with the contents of **SNIPPETS/05.txt**
 
-Now is a good time for us to talk about the structure of a component in Svelte (these .svelte files). A svelte component can contains javascript for functionality, css for styling, and html for structure. Think of Svelte Components like building blocks. When you put a few blocks together you create something that can be placed and removed while re-using that existing component.
+Now is a good time for us to talk about the structure of a component in Svelte (these .svelte files). A svelte component can contain javascript for functionality, css for styling, and html for structure. Think of Svelte Components like building blocks. These building blocks can be used together to compose your Svelte app.
 
 Typically a Svelte component will be laid out like the following:
 
@@ -180,7 +180,7 @@ Typically a Svelte component will be laid out like the following:
 
 All of those things living side-by-side harmoniously inside a single file? Blasphemy you say? It's amazing and provides an outstanding developer experience. Trust me, once you get used to it you're going to love it.
 
-Our `Navbar.svelte` component contains both javascript and structure, but not styles, as we're mainly using TailwindCSS for composing our styles. That's just fine.
+Your `Navbar.svelte` component contains both javascript and structure, but not styles, as you're mainly using TailwindCSS for composing your styles. That's just fine.
 
 Take a minute to read through the comments in Navbar.svelte to better understand what's going on under the hood.
 
@@ -192,7 +192,7 @@ Take a minute to read through the comments in Navbar.svelte to better understand
 
 ### #if Blocks
 
-You may have noticed inside the navbar component on Line 52, that we're using something foreign to normal html. This is a Svelte If block, which allows you to conditionally render some html, based on the evaluation of the block.
+You may have noticed inside the navbar component on Line 52, that you're using something foreign to normal html. This is a Svelte If block, which allows you to conditionally render some html, based on the evaluation of the block.
 
 In the following example, the page would read 'The Number is Greater Than 50' because the If block would evaluate to true.
 
@@ -205,6 +205,8 @@ In the following example, the page would read 'The Number is Greater Than 50' be
 <p>The Number is Greater Than 50</p>
 {/if}
 ```
+
+If `someNumber` was less than 50, the entire <p> tag would be excluded from the DOM.
 
 Svelte Logic Blocks can even handle else and else-if blocks, both prepended with a colon, like the following example:
 
@@ -224,7 +226,7 @@ Svelte Logic Blocks can even handle else and else-if blocks, both prepended with
 
 ### #each blocks
 
-Each Logic Blocks are used to iterate over a list of data and render something for each entry. Below is an example of a #each block used to list out the members of a band.
+`Each Logic Blocks` are used to iterate over a list of data and render something for each entry. Below is an example of a #each block used to list out the members of a band.
 
 ```html
 <script>
@@ -253,9 +255,9 @@ We won't dive too deep into this for the purposes of the tutorial, but you can s
 
 ## Using Your New Navbar Component in Another Page
 
-So you've added the navbar component to your app, but when you `npm run dev`, you don't see it anywhere. We have to consume the component on the pages we want to display it on.
+So you've added the navbar component to your app, but when you `npm run dev`, you don't see it anywhere. You have to consume the component on the pages you want it to be displayed on.
 
-You can add a Svelte Component to any other svelte by importing it in your script tag, and then just using the component by the name it's defined as.:
+You can add a Svelte Component to any other Svelte Component by importing it in your script tag, and then using your component by it's defined name.
 
 ```html
 <!-- index.svelte example -->
@@ -269,17 +271,21 @@ You can add a Svelte Component to any other svelte by importing it in your scrip
 <Navbar />
 ```
 
-While we could open up our 4 different page routes and add the component to each of them, that definitely seems wrong. There's good news though, Svelte has the concept of a Layout file (`./src/routes/__layout.svelte`) that gets used to wrap our other page components. The layout file is a great place to handle things like our navbar and out footer.
+While you could open up your 4 different page routes and add the component to each of them, that definitely seems wrong. There's good news though, Svelte has the concept of a Layout file (`./src/routes/__layout.svelte`) that gets used to wrap your other page components. The layout file is a great place to handle things like your navbar and your footer.
 
-To add our Navbar component to all of our existing routed pages, head over to `./src/routes/__layout.svelte` and replace the file contents with those of **SNIPPETS/06.txt**.
+To add your Navbar component to all of your existing routed pages, head over to `./src/routes/__layout.svelte` and replace the file contents with those of **SNIPPETS/06.txt**.
 
 Save your `__layout.svelte` file and then re-run `npm run dev`. You should now have a navbar with working links to your different routes.
 
+Note the `<slot></slot>` tags. This is the location where your routed SvelteKit pages will be rendered.
+
+`<slot>` can be used anywhere you want a component to consume any nested elements provided to the component.
+
 ## We Need A Hero
 
-Our home page should really make a big splash with a "hero" section welcoming people to our corner of the internet. Create a new file at `/src/components/Hero.svelte` and fill it with the contents of SNIPPETS/07.txt.
+Your home page needs to make a big splash with a "hero" section welcoming people to your corner of the internet. Create a new file at `/src/components/Hero.svelte` and fill it with the contents of SNIPPETS/07.txt.
 
-Taking a look at this component, we notice some new syntax in between our script tags.
+Taking a look at this component, you'll notice some new syntax in between our script tags.
 
 ```html
 <script>
@@ -288,7 +294,7 @@ Taking a look at this component, we notice some new syntax in between our script
 </script>
 ```
 
-This is how you declare component properties (props) in Svelte. It will allow us to consume our Hero component in different places throughout our app, but dynamically pass title, and subtitle so the hero will render differently.
+This is how you declare component properties (props) in Svelte. It will allow you to consume your Hero component in different places throughout your app, but dynamically pass title, and subtitle so the hero will render differently.
 
 ```html
 <Hero
@@ -297,28 +303,28 @@ This is how you declare component properties (props) in Svelte. It will allow us
 />
 ```
 
-One other subtle but important new item is the data binding `{@html ...}` within the subtitle. This allows us to render dynamic html to the page. If we were to bind an html string without including this tag, our users would see our markup, instead of the rendered html.
+One other subtle but important new item is the data binding `{@html ...}` within the subtitle. This allows you to render dynamic html to the page. If you were to bind an html string without including this tag, your users would see our markup, instead of the rendered html.
 
 > Note: Svelte doesn't do any sanitizing of the html that's being bound, so you need to be careful with html that comes from outside sources as you could risk exposing your users to XSS attacks. [More Info Here](https://svelte.dev/docs#html).
 
 ### Show the world your beautiful face
 
-Our hero is setup to consume an image located at `./static/images/avatar.png`. Typically, you would just drop a square image in this place, and we'd round it Tailwind to create a nice circle image. In our case, we actually need the image to be round for our dynamically generated post images. I used [This Tool](https://crop-circle.imageonline.co/) to create my circle png avatar. Disclaimer, that site is bloated with ads, buyer beware.
+Your hero is setup to consume an image located at `./static/images/avatar.png`. Typically, you would just drop a square image in this place, and round it with Tailwind to create a nice circle image. In your case, you actually need the image to be round (png with transparency) for your dynamically generated post images. I used [This Tool](https://crop-circle.imageonline.co/) to create my circle png avatar. Disclaimer, that site is bloated with ads, buyer beware.
 
-However you decide to make the image, you'll just need a circular png image located at `./static/images/avatar.png`.
+However you decide to make the image, you'll just need a circular png image located at `./static/images/avatar.png`. Create this image before moving on. If you don't have a good picture handy, use your phone or computer's camera to take a picture. Don't forget to smile!
 
-Our component is ready to be consumed, but we've got a few more components to create before we can render this to a page.
+Your component is ready to be consumed, but you've got a few more components to create before you can render this to a page.
 
-## We Need More Content
+## More Content
 
-We're now going to create the couple of components that are required for us to display blog snippets on the home page. One will be the container component that will hold many blog snippets, the next will be the component holding the structure for the snippet itself, and lastly we'll create a Pager component for when our blog snippets should be paged.
+You're going to create the couple of components that are required for you to display blog snippets on the home page. One will be the container component that will hold many blog snippets, the next will be the component holding the structure for the snippet itself, and lastly you'll create a Pager component for when our blog snippets should be paged.
 
 Create the following files, and copy their snippets in.
 
 -   `./src/components/BlogSnippet.svelte` -> SNIPPETS/08.txt
-    -   This is our individual blog snippet, 1 will be rendered per article.
+    -   This is your individual blog snippet, 1 will be rendered per article.
 -   `./src/components/BlogSnippets.svelte` -> SNIPPETS/09.txt
-    -   This is our component that houses 1:many blog snippets.
+    -   This is your component that houses 1:many blog snippets.
 -   `./src/components/Pager.svelte` -> SNIPPETS/10.txt
     -   This is the component that handles paging when there are many pages of snippets to be displayed.
 
@@ -361,15 +367,15 @@ The BlogSnippets and BlogSnippet/Pager components are great examples of using ne
 
 ## Last Build Block, I Swear
 
-We need one more component that will handle displaying our social links on our `/connect` page.
+You need one more component that will handle displaying our social links on our `/connect` page.
 
 Create the following component `./src/components/ConnectIcon.svelte` and fill it with the contents of SNIPPETS/11.txt
 
-There isn't anything too crazy or new going on here, other than the usage of css variables for styling the component. This allows us to set custom background colors and text colors on each item from the list of data in `socials.ts`. It's important to note that some of the colors you've seen used with Tailwind JIT, like `text-[#2c2c2c]` seem like they could be used to populate the colors in this case. This is not the case as something like `text-[${social.color}]` doesn't get evaluated until after Tailwind has already compiled it's custom css.
+There isn't anything too crazy or new going on here, other than the usage of css variables for styling the component. This allows you to set custom background colors and text colors on each item from the list of data in `socials.ts`. It's important to note that some of the colors you've seen used with Tailwind JIT, like `text-[#2c2c2c]` seem like they could be used to populate the colors in this case. This is not the case as something like `text-[${social.color}]` doesn't get evaluated until after Tailwind has already compiled it's custom css.
 
 ## All this UI and No Data
 
-So far we've pulled together almost all of the components that we'll need to drive our new portfolio page, but we need to have some data as well. This is one of the superpowers ⚡ of SvelteKit. I mentioned before that SvelteKit uses a file system based router. Everything in `./src/routes` that ends in `.svelte` will represent a routable page in your app (unless it starts with an \_ which denotes a private module.) SvelteKit's router isn't limited to serving up pages though, it can also serve up **endpoints**. Endpoints are modules writting in .js (or in our case .ts) files that export functions corresponding to HTTP methods. More details about the implementation of endpoints is available [here](https://kit.svelte.dev/docs#routing-endpoints).
+So far you've pulled together almost all of the components that you'll need to drive your new portfolio page, but you need to have some data as well. This is one of the superpowers ⚡ of SvelteKit. I mentioned before that SvelteKit uses a file system based router. Everything in `./src/routes` that ends in `.svelte` will represent a routable page in your app (unless it starts with an \_ which denotes a private module.) SvelteKit's router isn't limited to serving up pages though, it can also serve up **endpoints**. Endpoints are modules writting in .js (or in your case .ts) files that export functions corresponding to HTTP methods. More details about the implementation of endpoints is available [here](https://kit.svelte.dev/docs#routing-endpoints).
 
 Create the following structure underneath your `./src/routes` folder:
 
@@ -394,25 +400,25 @@ The previous files can be filled with the following snippets:
 
 All of the above endpoints depend on scripts and functions in `./src/lib`. To see what a function in the endpoint is doing, click on it and hit F12 to go to the functions definition.
 
-In our case, our endpoints are going to be turned into Netlify Serverless functions via the Netlify Adapter defined in our svelte.config.js. More information on the Netlify adapter is available [here](https://github.com/sveltejs/kit/tree/master/packages/adapter-netlify).
+In your case, your endpoints are going to be turned into Netlify Serverless functions via the Netlify Adapter defined in our svelte.config.js. More information on the Netlify adapter is available [here](https://github.com/sveltejs/kit/tree/master/packages/adapter-netlify).
 
 ## Time To Compose Our Pages
 
-Now that we've got our components, and our endpoints ready to go, let's put together our home page, shall we?
+Now that you've got your components, and your endpoints ready to go, you can start to compose your home page.
 
-Let's start by replacing the contents of `./src/routes/index.svelte` with the contents of SNIPPETS/15.txt.
+Start by replacing the contents of `./src/routes/index.svelte` with the contents of SNIPPETS/15.txt.
 
-Things of note on our home page:
+Things of note on your home page:
 
--   We're telling SvelteKit that we want to prerender this page via the following code:
+-   You're telling SvelteKit that you want to prerender this page via the following code:
     ```html
     <script context="module">
         export const prerender = true;
         ...
     </script>
     ```
--   The `load` function that we've defined is getting data from our `/posts/recent-posts.json` endpoint that we created to populate the Blog Snippets on the home page. It's important that we use SvelteKit's provided fetch method to prevent duplicate requests to the endpoint. Loading in SvelteKit is a complex topic, and more information and details can be found in [SvelteKit Docs](https://kit.svelte.dev/docs#loading).
--   We're finally importing and consuming our `Hero` and `BlogSnippets` components which will be displayed on the page.
+-   The `load` function that you've defined is getting data from our `/posts/recent-posts.json` endpoint that you created to populate the Blog Snippets on the home page. It's important that you use SvelteKit's provided fetch method to prevent duplicate requests to the endpoint. Loading in SvelteKit is a complex topic, and more information and details can be found in [SvelteKit Docs](https://kit.svelte.dev/docs#loading).
+-   You're finally ready to import and consume your `Hero` and `BlogSnippets` components which will be displayed on the page.
 
 ⭐ Action Item - Replace the title and subtitle on the Hero component implementation to reflect who you are.
 
@@ -424,27 +430,27 @@ At this point you should be able to run `npm run dev` and see your home page liv
 
 ## Finishing Up Our Other Pages
 
-Let's start with the blog list page. This page at `/blog/[page]` will display all of the articles of content that you have published.
+Time to get going with the blog list page. This page at `/blog/[page]` will display all of the articles of content that you have published.
 
 Go ahead and replace the contents of `./src/routes/blog/[page].svelte` with the contents of SNIPPETS/16.txt.
 
-Looking at the code that's provided for our blog list page, we can see a couple different things going on here:
+Looking at the code that's provided for your blog list page, you can see a couple different things going on here:
 
--   Inside our `load` function, we're taking in the page number being requested via the `page.params.page`. This is where your dynamics parameters from the route `[page].svelte` end up, available for your consumption.
--   We're getting data back from our endpoint for this page of blog articles, and doing a little bit of js tricker to provide the pages to our Pager component.
--   If we don't get a successful response from our endpoint, we're returning the error, which will prevent the blog list from loading. In a production environment it's best to obscure the error from the client, which is why we're just returning a generic error message. You can also define a custom error page (or scoped pages) for your SvelteKit app. More information on how to do that in the SvelteKit docs [here](https://kit.svelte.dev/docs#layouts-error-pages).
--   We're reusing our BlogSnippets component to display the page of data for our blog list. Component reuse is what makes these frameworks so awesome to work with.
+-   Inside your `load` function, you're taking in the page number being requested via the `page.params.page`. This is where your dynamics parameters from the route `[page].svelte` end up, available for your consumption.
+-   We're getting data back from your endpoint for this page of blog articles, and doing a little bit of js trickery to provide the pages to our Pager component.
+-   If you don't get a successful response from your endpoint, you're returning the error, which will prevent the blog list from loading. In a production environment it's best to obscure the error from the client, which is why you're just returning a generic error message. You can also define a custom error page (or scoped pages) for your SvelteKit app. More information on how to do that in the SvelteKit docs [here](https://kit.svelte.dev/docs#layouts-error-pages).
+-   You're reusing our BlogSnippets component to display the page of data for your blog list. Component reuse is what makes these frameworks so awesome to work with.
 
-Next we'll handle the single page article and it's contents.
+Next you'll handle the single page article and it's contents.
 
 Go ahead and replace the contents of `./src/routes/article/[slug].svelte` with the contents of SNIPPETS/17.txt.
 
 Things to note about the article page:
 
--   We're using our endpoints to retrieve the data for the single post that we're loading.
--   If we don't get a successful response from our endpoint, we're returning the error, which will prevent the article from loading. We're doing the same thing here with our obscure error message back to the client.
--   Introducing our first built in Svelte element `<svelte:head>...</svelte:head>`. This element allows us to insert elements into the head of our document. Since we're sending rendered pages back to the client, this allows us to set things in the head dynamically for SEO and link unfurling.
--   We're taking the markdown that we retrieve from our postdata for the article, and converting it to html with [marked](https://www.npmjs.com/package/marked).
+-   You're using your endpoints to retrieve the data for the single post that you're loading.
+-   If you don't get a successful response from your endpoint, you're returning the error, which will prevent the article from loading. You're doing the same thing here with your obscure error message back to the client.
+-   Introducing your first built in Svelte element `<svelte:head>...</svelte:head>`. This element allows you to insert elements into the head of your document. Since we're sending rendered pages back to the client, this allows us to set things in the head dynamically for SEO and link unfurling.
+-   You're taking the markdown that you retrieve from your postdata for the article, and converting it to html with [marked](https://www.npmjs.com/package/marked).
 
 Again, you should be able to run `npm run dev` and open your single post to see it in all it's glory.
 
@@ -466,7 +472,7 @@ That's it, we have our portfolio site running on Svelte With SvelteKit and Tailw
 
 "If you don't ship it, it doesn't count". This has never been more true and is one of the areas I find people getting hung up on a regular basis. Going from a project that you build locally, and run locally, to deploying to the web can be a scary and daunting task.
 
-Fortunately, we've got things all setup for you and it should be as easy as 1... 2... 3... website.
+Fortunately, you've got things all setup for you and it should be as easy as 1... 2... 3... website.
 
 To verify that your build **should** work when we ship it to Netlify, you can run the following 2 commands in your terminal:
 
@@ -501,7 +507,7 @@ Your first step here is going to be to connect to your Git provider. If you've b
 
 Once you've authenticated, you should be on step two of the Netlify setup process, and you'll need to choose the repo where you've stored your Personal-Portfolio-Tutorial (or whatever you change the name to, if you change the name early on).
 
-After selecting your repository, Netlify is going to ask you for some properties about your build and deploy. We're going to add a few environment variables that will help our solution to build properly.
+After selecting your repository, Netlify is going to ask you for some properties about your build and deploy. You're going to add a few environment variables that will help your solution to build properly.
 
 -   Click the button labeled `Show Advanced`.
 -   Under Advanced build settings, click the button labeled `New Variable` **3 Times**.
