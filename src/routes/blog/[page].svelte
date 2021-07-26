@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script context="module">
     export const prerender = true;
 
     export async function load({ page, fetch, session, context }) {
