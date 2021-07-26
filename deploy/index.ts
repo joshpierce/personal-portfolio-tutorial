@@ -40,7 +40,7 @@ const imagesDir = './static/postimages';
 
         //Start by drawing the background image
         const backgroundImage = await loadImage(
-            path.join(process.cwd(), 'static/images/milkyway.jpg')
+            path.join(process.cwd(), 'static/images/hero-background.jpg')
         );
         context.drawImage(backgroundImage, 0, 0, width, height);
 
