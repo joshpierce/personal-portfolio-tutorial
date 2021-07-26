@@ -47,7 +47,7 @@ You'll want your own copy of this repository. Get yours by [Forking This Repo](h
 
 > Note: after forking the repo, you can click the ⚙ icon, and the first setting available should give you the option to rename your repo however you'd like.
 
-Next we'll wnat to create or navigate to a folder where you'd like to keep this project. Then run the following commands in order.
+Next we'll want to create or navigate to a folder where you'd like to keep your project. Then run the following commands in order.
 
 ```bash
 # Clone your repository (you may be asked to login to github at this point.)
@@ -224,7 +224,7 @@ Svelte Logic Blocks can even handle else and else-if blocks, both prepended with
 
 ### #each blocks
 
-Each Logic Blocks are used to iterate over a list of data and render something for each entry. Below is an example of a #each block used to list out the members of the a band.
+Each Logic Blocks are used to iterate over a list of data and render something for each entry. Below is an example of a #each block used to list out the members of a band.
 
 ```html
 <script>
@@ -457,5 +457,121 @@ Make sure to save the socials.ts file and then continue on to creating your /con
 Go ahead and replace the contents of `./src/routes/connect.svelte` with the contents of SNIPPETS/18.txt.
 
 -   This component is simply ingesting the list of social sites you have turned on in the previous step, and displaying them as links for people to go and connect with you online.
+-   Also, this page makes use of Netlify's automatic form handling.
+    > Note: Currently there is an issue with the form on this page that I'm awaiting a response from Netlify on. I will update this repo once I have an answer, so like and subscribe (shameless plug).
 
-[to be continued...]
+That's it, we have our portfolio site running on Svelte With SvelteKit and TailwindCSS. Congratulations! 🎉.
+
+## But Wait There's More
+
+"If you don't ship it, it doesn't count". This has never been more true and is one of the areas I find people getting hung up on a regular basis. Going from a project that you build locally, and run locally, to deploying to the web can be a scary and daunting task.
+
+Fortunately, we've got things all setup for you and it should be as easy as 1... 2... 3... website.
+
+To verify that your build **should** work when we ship it to Netlify, you can run the following 2 commands in your terminal:
+
+```bash
+# Build your project locally for production
+npm run build
+
+# Run the built files locally, so you can test on localhost:3000.
+npm run preview
+```
+
+Double check that everything builds correctly, and appears to be working when you navigate to localhost:3000.
+
+At this point, if you haven't commited your changes back to your remote repository on GitHub, you should do that with the following commands in your terminal.
+
+```bash
+# Stage all your files to be checked in
+git add -- .
+
+# Commit to your local repository the changes that you've made
+git commit -m "Time To Go Live!"
+
+# Push your commit to your repository
+git push origin main
+```
+
+Now that you have your source files all loaded into your GitHub repository, you can head over to https://netlify.com and get signed into your account. It should go without saying that if you don't have an account at this point, you'll need one to continue this tutorial.
+
+Once you're in your account, you should see a fairly large green button labeled `New site from Git`. Go ahead and click on that to start setting up your new site.
+
+Your first step here is going to be to connect to your Git provider. If you've been following step-by-step through this tutorial, you should be choosing the GitHub option. Netlify will ask you to authenticate your GitHub account so that it can access your source files.
+
+Once you've authenticated, you should be on step two of the Netlify setup process, and you'll need to choose the repo where you've stored your Personal-Portfolio-Tutorial (or whatever you change the name to, if you change the name early on).
+
+After selecting your repository, Netlify is going to ask you for some properties about your build and deploy. We're going to add a few environment variables that will help our solution to build properly.
+
+-   Click the button labeled `Show Advanced`.
+-   Under Advanced build settings, click the button labeled `New Variable` **3 Times**.
+-   Add the following Variable Names and Values to your sites environment variables.
+    -   **LD_LIBRARY_PATH** - /var/task/node_modules/canvas/build/Release/libz.so.1:/lib64:/usr/lib64:$LAMBDA_RUNTIME_DIR:$LAMBDA_RUNTIME_DIR/lib:$LAMBDA_TASK_ROOT:$LAMBDA_TASK_ROOT/lib:/opt/lib
+        -   We'll cover what this piece is for in more detail later on in this tutorial.
+    -   **NODE_VERSION** - 12.22.3
+    -   **NPM_VERSION** - 6.14.13
+
+Okay, take a deep breath, and click the big green button labeled `Deploy site`.
+
+Now that you've said "go netlify go", Netlify is going to do the following things:
+
+-   Check out your latest code from your `main` branch.
+-   Install NPM dependencies.
+-   Run the build command defined in your `netlify.toml`.
+-   Deploy the output assets from /build and /functions respectively.
+
+You can navigate to the Deploys tab of your brand new netlify site to see the build in action and know when it's been deployed.
+
+Once your build and deploy have completed, on the `Site Overview`tab you'll see the custom url that netlify has provisioned for your site. It generally is something along the lines of `https://[three part name].netlify.app`. Navigating to this URL should display your brand new portfolio page.
+
+## Putting a Custom URL In Front of Your Site
+
+Lastly, it's going to be difficult to tell someone "yeah you can find me online at https://adventurous-platypus-51640.netlify.app". You can use Netlify to handle a custom domain, but I prefer using a third-party to acquire and hold my domain names when possible. Namecheap is a quality vendor that sells domain names for a reasonable price. If you already have acquired a domain name for your new site, you can skip the next set of steps.
+
+If you want a custom domain name and don't already own one, or own one you want to use for your portfolio, follow this quick set of steps.
+
+-   Head to https://namecheap.com
+-   Use the search to find a domain name that you can use for your portfolio.
+-   Add the domain to your cart and purchase it. I typically only reserve my domain names for a year at a time and would recommend the same until you're fully commited to keeping things up and running.
+-   Buy the domain name.
+
+After you've purchased a domain name, you will need to follow these remaining steps to get things pointed to your brand new netlify app.
+
+-   Open https://netlify.com and login.
+-   Click on your new site in your list of Sites.
+-   Click on the gray button labeled `domain settings`.
+-   Click on the green button labeled `Add custom domain`.
+-   Type in your new domain name (without the www. subdomain), and click the green button labeled `Verify`.
+-   Netlify is going to say `[your domain name here] already has an owner. Is It You?`
+-   Choose `Yes, add domain`.
+
+This will add the custom domain to your netlify app and now all we need to do is point your domain name at your new Netlify app, and for that we're going to use Cloudflare.
+
+-   Head over to https://cloudflare.com
+-   Log in if you already have an account, or sign up if you still need an account.
+-   Once you're logged into your account, you should see a big blue button labeled `+ Add a Site`. Click it.
+-   Cloudflare will ask you what the domain name is. Enter it, again without the www. subdomain and click `Add Site`.
+-   Choose the bottom option for the free plan this should be plenty for your personal portfolio page.
+-   Click the `Continue` button.
+-   Delete any entries that come back as defaults (imported from your current DNS settings on NameCheap.). For options that just list an `Edit` option, you can choose `Edit` > `Delete` > `Delete`.
+-   Add the following two records to your list (clicking the blue `Save` button after each addition):
+<pre>
+Type    Name          Target
+
+---
+
+CNAME @ https://[your-site-name].netlify.app
+CNAME www https://[your-site-name].netlify.app
+
+</pre>
+- Click the big blue `Continue` button at the bottom of the page.
+
+-   Cloudflare will then walk you through the steps to change your NameServers for your URL on namecheap. Follow those steps to complete your setup.
+
+Now as with any DNS based solution, it can take some time for things to propogate across the web, but in very short order, your new personal portfolio should be online, at your custom domain name, and ready for you to share it with the world!
+
+If you have any issues along the path of this tutorial, please create an issue [here](https://github.com/joshpierce/personal-portfolio-tutorial/issues).
+
+## One Other Item to talk about
+
+One of the big
